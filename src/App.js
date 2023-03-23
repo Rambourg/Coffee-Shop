@@ -29,9 +29,6 @@ function Navbar() {
             <Link to="/order" class="navbar-item">Order</Link>
             <span class="navbar-item">
               <a class="button is-primary is-inverted">
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span>
                 <Link to="/basket">Basket</Link>
               </a>
             </span>

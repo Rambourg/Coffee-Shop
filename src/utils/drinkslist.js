@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './drinkslist.css'
+
 
 const drinksList = [
     {bev: "Americano", price: "2.50", imgURL: "https://upload.wikimedia.org/wikipedia/commons/0/09/Hokitika_Cheese_and_Deli%2C_Hokitika_%283526706594%29.jpg"},
@@ -11,7 +12,10 @@ const drinksList = [
     {bev: "Chai Latte", price: "3.00", imgURL: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chai-latte-4e5fe2f.jpg"}
 ]
 
-export default function DrinksItem() {
+
+
+export function DrinksItem(props) {
+    
     return(
         <>
             <div class= "card columns m-0 is-align-content-stretch block">
@@ -20,7 +24,7 @@ export default function DrinksItem() {
                     <div key={index}>
                         <div class="card-image">
                             <figure class="image" >
-                                <img src={index.imgURL} alt={index.bev} style={{width: 150 + "px", height: 150 + "px"}}/>
+                                <img class="is-rounded" src={index.imgURL} alt={index.bev} style={{width: 150 + "px", height: 150 + "px"}}/>
                             </figure>
                         </div>
                         <div class="card-content">
@@ -30,7 +34,7 @@ export default function DrinksItem() {
                             </div>
                     </div>
                     <footer class="card-footer">
-                        <button class="button is-danger card-footer-item">Add to basket</button>
+                        <button onClick={props.event} class="button is-danger card-footer-item">Add to basket</button>
                     </footer>
                 </div>
                 </div>
@@ -38,6 +42,47 @@ export default function DrinksItem() {
             </div>
             
         </>
-    )
-} 
+    )  
+
+};
+
+export function ProductList() {
+
+    const [basket, setBasket] = useState([]);
+
+    const HandleAddToBasket = (props) => {
+            setBasket((prev) => [...prev, props]);
+          }
+
+    const calculateTotal = () => {
+        return basket.reduce((total, product) => total + product.price, 0);
+    };
+        
+    return(
+
+    <div className="basket-container">
+    <h2>Basket:</h2>
+    <ul className="basket">
+      {basket.map((index) => (
+        <li key={index}>
+          <p>{index.bev}</p>
+          <p>£{index.price}</p>
+        </li>
+      ))}
+      {basket.length === 0 && <p>Your basket is empty.</p>}
+      {basket.length > 0 && (
+        <>
+          <li>
+            <p>Total:</p>
+            <p>£{calculateTotal()}</p>
+          </li>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" style={{ marginTop: "1rem" }}>Checkout</button>
+        </>
+      )}
+    </ul>
+   <DrinksItem event={HandleAddToBasket}/> 
+  </div>
+  
+    );
+};  
 
