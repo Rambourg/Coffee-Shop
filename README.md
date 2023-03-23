@@ -2,7 +2,7 @@ E-Commerce Coffee Shop
 
 This project was developed using Javascript, React, Tailwind CSS, and HTML. Its purpose is to create an ecommerce platform for a coffee shop, where customers can purchase delicious drinks at an affordable price.
 
-A braod overview of the application interface.
+A broad overview of the application interface.
 ![image](https://user-images.githubusercontent.com/116593146/227336897-257657bd-c5c5-43cd-b547-250446ace184.png)
 
 
