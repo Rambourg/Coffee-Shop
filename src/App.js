@@ -7,7 +7,7 @@ import { Route, Routes, Outlet, Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-  <section class="hero is-warning is-medium is-fullheight">
+  <section class="hero is-warning is-small">
   <div class="hero-head">
     <nav class="navbar">
       <div class="container">
@@ -39,9 +39,11 @@ function Navbar() {
         </div>
       </div>
     </nav>
+   
   </div>
-  <Outlet />
+  <Outlet /> 
   </section>
+  
   
   );
 }

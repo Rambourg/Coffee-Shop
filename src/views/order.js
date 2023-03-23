@@ -3,10 +3,10 @@ import DrinksItem from "../utils/drinkslist";
 
 export default function Order() {
     return(
-        <div class="is-flex is-flex-direction-row">
-            <div class="is-flex is-flex-direction-row is-flex-wrap-w">
+        <div>
+            <section class="section is-medium">
                 <DrinksItem />
-            </div>
+            </section>
         </div>
-    );
+    )
 }
