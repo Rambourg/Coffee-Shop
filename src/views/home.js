@@ -7,7 +7,7 @@ return(
   <div class="hero-body">
     <div class="container has-text-centered">
       <p class="title">
-        Title
+        This is the home page
       </p>
       <p class="subtitle">
         Subtitle
