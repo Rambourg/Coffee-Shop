@@ -1,10 +1,10 @@
 import React from "react";
-import { ProductList } from "../utils/drinkslist";
+import { ProductList } from "./order";
 
-export default function Basket() {
+export default function Basket({basket}) {
     return(
         <div>
-            <ProductList />
+            <ProductList basket={basket}/>
         </div>
     );
 }

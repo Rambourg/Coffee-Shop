@@ -12,7 +12,11 @@ const drinksList = [
     {bev: "Chai Latte", price: "3.00", imgURL: "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chai-latte-4e5fe2f.jpg"}
 ]
 
-function DrinksItem(props) {
+function DrinksItem({setBasket, basket}) {
+    function handleClick(name, price) {
+        setBasket([...basket, {name, price: (price - 0)}]);
+       // console.log(basket);
+    }
     return(
         <>
             <div class= "card columns m-0 is-align-content-stretch block">
@@ -31,7 +35,7 @@ function DrinksItem(props) {
                             </div>
                     </div>
                     <footer class="card-footer">
-                        <button onClick={props.event} class="button is-danger card-footer-item">Add to basket</button>
+                        <button onClick={() => handleClick(index.bev, index.price)} class="button is-danger card-footer-item">Add to basket</button>
                     </footer>
                 </div>
                 </div>
@@ -43,16 +47,11 @@ function DrinksItem(props) {
 
 };
 
-export function ProductList() {
+export function ProductList({basket}) {
 
-    const [basket, setBasket] = useState([]);
-
-    const HandleAddToBasket = (props) => {
-            setBasket((prev) => [...prev, props]);
-          }
 
     const calculateTotal = () => {
-        return basket.reduce((total, product) => total + product.price, 0);
+        return basket.reduce((total, product) => (total) + (product.price), 0);
     };
         
     return(
@@ -62,8 +61,9 @@ export function ProductList() {
     <ul className="basket">
       {basket.map((product, index) => (
         <li key={index}>
-          <p>{index.bev}</p>
-          <p>£{index.price}</p>
+        <p>{console.log(product)}</p>
+          <p>{product.name}</p>
+          <p>£{product.price}</p> 
         </li>
       ))}
       {basket.length === 0 && <p>Your basket is empty.</p>}
@@ -77,23 +77,19 @@ export function ProductList() {
         </>
       )}
     </ul>
-   <DrinksItem event={HandleAddToBasket}/> 
-   <Link to={{
-       pathname: '/basket',
-       state: basket,
-   }}/>
+  
 
   </div>
-  
+   
     );
 };  
 
 
-export default function Order() {
+export default function Order({setBasket, basket}) {
     return(
         <div>
             <section class="section is-medium">
-            <DrinksItem />
+            <DrinksItem setBasket={setBasket} basket={basket}/>
             </section>
         </div>
     )

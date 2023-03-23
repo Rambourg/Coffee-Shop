@@ -4,6 +4,7 @@ import Order from "./views/order";
 import Basket from "./views/basket";
 import MainLogo from "./utils/kaffet-logo.PNG";
 import { Route, Routes, Outlet, Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function Navbar() {
   return (
@@ -46,6 +47,8 @@ function Navbar() {
 }
 
 function App() {
+  const [basket, setBasket] = useState([]);
+  console.log(basket);
   return (
     <Routes>
       <Route path="/" element={<Navbar />}>
@@ -55,11 +58,11 @@ function App() {
         />
         <Route 
             path="/order" 
-            element={<Order />}
+            element={<Order setBasket={setBasket} basket={basket}/>}
         />
         <Route
             path="/basket"
-            element={<Basket />}
+            element={<Basket basket={basket}/>}
         />
         </Route>
     </Routes>
